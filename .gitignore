@@ -1,0 +1,4 @@
+.DS_Store
+data/borg-repository/
+data/.cache
+data/.config

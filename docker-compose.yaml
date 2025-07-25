@@ -1,0 +1,29 @@
+services:
+  borgmatic:
+    image: ghcr.io/borgmatic-collective/borgmatic
+    container_name: borgmatic
+    volumes:
+      # backup source
+      # 备份用户主目录
+      - /home:/home:ro
+      # 映射 volume1 到 /volume1
+      - /volume1:/volume1:ro
+      # 映射 volume2 到 /volume2
+      - /volume2:/volume2:ro
+      # 映射 volume4 到 /volume4
+      - /volume4:/volume4:ro
+      # 映射 volume3/Archives-4T 到 /mnt/borg-repository （我主要使用这个盘来备份）
+      - /volume3/Archives-4T:/mnt/borg-repository
+
+      # borgmatic config file(s) + crontab.txt
+      - ./data/borgmatic.d:/etc/borgmatic.d/ # borgmatic config file(s) + crontab.txt
+      - ./data/.config/borg:/root/.config/borg # config and keyfiles
+      - ./data/.ssh:/root/.ssh # ssh key for remote repositories
+      - ./data/.cache/borg:/root/.cache/borg # checksums used for deduplication
+    environment:
+      # 时区
+      - TZ=Asia/Shanghai
+      # 备份时间，每天11:05执行，可以修改为其他时间
+      - BACKUP_CRON=5 11 * * *
+      # 备份密码，务必修改为你的密码，并且保存好，恢复的时候没有这个密码就GG了
+      - BORG_PASSPHRASE=changetoyourpassword
