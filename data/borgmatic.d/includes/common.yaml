@@ -1,0 +1,33 @@
+# 这是公共配置
+
+# 保留策略
+# 保留策略是用来设置保留多少个备份的
+# 这里设置为保留2个小时的备份，7天的备份，3个月的备份，3个月的备份
+keep_hourly: 2
+keep_daily: 7
+
+# 只备份本地文件系统
+one_file_system: true
+
+# 这些检查由轻到重，用来校验数据是否完整
+checks:
+  - name: repository
+    frequency: 2 weeks
+  - name: archives
+    frequency: 2 weeks
+  - name: extract
+    frequency: 3 months
+  - name: data
+    frequency: 3 months
+
+# 健康检查
+# 注册 https://healthchecks.io/ 后获得你的UUID
+healthchecks:
+  ping_url: https://hc-ping.com/your-uuid
+
+# 排除模式
+# 排除模式是用来排除一些文件或目录的，这些文件或目录不会被备份
+# recycle 是绿联的回收站，所以需要排除
+exclude_patterns:
+  - '*/#recycle'
+  - '*/#recycle/*'

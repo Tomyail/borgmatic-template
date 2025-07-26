@@ -1,0 +1,12 @@
+# https://torsion.org/borgmatic/docs/reference/configuration/
+<<: !include includes/common.yaml
+
+# 备份用户主目录
+source_directories:
+  - /home/your-user-name
+repositories:
+  - path: /mnt/borg-repository/your-user-name
+
+keep_weekly: 4
+keep_monthly: 6
+keep_yearly: 3
