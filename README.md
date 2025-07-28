@@ -89,6 +89,7 @@ borgmatic-template/
 
 ## 参考链接
 
+- [项目灵感](https://blog.tomyail.com/ugreen-nas-backup-with-borgmatic-and-docker/)
 - [Docker Borgmatic](https://github.com/borgmatic-collective/docker-borgmatic)
 - [Borgmatic 官方文档](https://torsion.org/borgmatic/)
 - [BorgBackup 官方文档](https://borgbackup.readthedocs.io/)
